@@ -46,6 +46,16 @@ Q:HBase tuning performance parameters?
 A:Hbase_master_heapsize
 hbase_regionserver_heapsize
 number_of_regions in each region_servers
+Q: How do we fix unassigned regions in Hbase ?
+Disable table from hbase shell
+Run hbck to fix problmes using following command
+sudo -u hbase hbase hbck -repair
+
+
+Q: How to check any corrputions
+A:/hbase/hbck - tool for checking for region consistency and table integrity problems and repairing a corrupted HBase.
+./bin/hbase hbck -details 
+
 
 Unix shell commanfs
 Q: file with employee reocrds, print the lines matching given pattern
@@ -59,7 +69,23 @@ g- all occurence
 Q:how to get 4th columns in csv file
 A:cut -d "<delimiter>" -f (field number) <filename>
 
-
-
+Cloud Questions:
+Q: Public and Private Subnets
+Q:NACL vs security groups
+Q:How does public and private subnets with in a vpc communicates?
+Q:VPC Endpoints
+VPC Endpoints allow your VPC to connect directly to AWS services like S3 and DynamoDB, without traversing the public internet. This enhances security by reducing exposure to the internet and improves performance by reducing latency, especially for data-intensive workloads.
+Q:What is an AMI?
+An AMI is a pre-configured virtual machine image that you can use to launch EC2 instances.
+Q:How can you monitor and manage the performance of EC2 instances and underlying resources?
+A:CloudWatch metrics for cpu utilization,memory,network and setup alarms.
+Q:what is EBS?
+A:Block level storage volumnes for use with EC2 instances.
+Q:How do you Backup EBS data?
+A:using snapshots - snapshot is a copy of data on ebs volumns,stored in S3.
+Q:Can you attach multiple EBS volumes to EC2 instance?
+A:Yes,we can multiple to single ec2 instance
+Q:what happens to data on EBS volume when ec2 instance is terminated?
+A: By default,EBS volume attached to instance will be delted. use "DeleteOnTermination" property 
 
 
