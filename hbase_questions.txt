@@ -1,0 +1,65 @@
+Q:What is CDP(Cloudera Data Platform) ?
+A:Cloudera Data Platform (CDP) is a Platform-as-a-Service (PaaS) that is cloud infrastructure agnostic and easily portable between multiple cloud providers including private solutions such as OpenShift.
+Q:What are different services available in CDP?
+A:
+Q:How to migrate data from CDH or HDP to CDP ?
+A:Use CDP Replication Manager (RM) to replicate all your data, metadata, and Sentry permissions or Apache Ranger policies into the cloud. That is, RM will automatically move all your workloads into the cloud.
+Q:What is Replication Manager?
+A:Replication Manager is a service for copying and migrating data between environments within the enterprise data cloud. 
+Q:Is CDP serverless?
+A:The CDP Management console and control plane run as a service in a Cloudera account.  It talks to your VPC and cloud account to provision machines for its SDX data lake cluster and for the workloads that run on it.
+Data Hubs use virtual machines and effectively provide a cluster-as-a-service.
+Q:What is Cloudera Runtime version? and how to perform upgrade runtime?
+A:
+cdp opdb upgrade-database --environment <environment-name> --database <database-name> --runtime <runtime-version> [--rolling-upgrade | --no-rolling-upgrade] 
+cdp opdb upgrade-database --environment <environment-name> --database <database-name> [--runtime <runtime-version> | --image <imageId>] --os-upgrade-only --rolling-upgrade
+Q:What is Grafana? How we can visualize COD Metrics using Grafana?
+It is a pre-defined solution to visualize the COD metrics comprehensively.
+cdp opdb create-database --environment <environment_name> --database <database_name> --enable-grafana | using create-database and --enable-grafana
+Q:What is COD?
+A:Cloudera Operational Database is powered by Apache HBase and Apache Phoenix. In Cloudera Operational Database, you use Apache HBase as a datastore with HDFS and/or S3 providing the storage infrastructure.
+Q:What do you mean by Multi-AZ deployment?
+A:A Multi-AZ deployment means that compute infrastructure for HBase’s master and region servers are distributed across multiple AZs ensuring that when a single availability zone has an outage, only a portion of Region Servers is impacted and clients automatically switch over to the remaining servers in the available AZs.
+Similarly, the backup master (assuming the primary master was in the AZ, which is having an outage) automatically takes the role of the failing master because it is deployed in a separate AZ from the primary master server.
+The entire process is automatic and requires no setup and management from an user. Such a deployment works to ensure an application does not suffer an outage due to the loss of a single AZ.
+Q:HBase Architecture ?
+A:Regionservers:HBase tables are split into regions and are served by region servers.
+NameNode server(HMaster) — Responsible for monitoring all region server instances in the cluster and is the interface for all metadata changes.
+Q:What are storefiles?
+A:Apache HBase stores data in indexed store files called HFiles on HDFS. The store files are sequences of blocks with a block index stored at the end for fast lookups. 
+The store files provide an API to access specific values as well as to scan ranges of values, given a start and end key.
+Q:Explain HBase Write Operation?
+A:During a write operation, data is first written to a commit log called a write-ahead-log (WAL) and then moved into memory in a structure called Memstore.
+When the size of the Memstore exceeds a given maximum value, it is flushed as a HFile to disk. 
+Each time data is flushed from Memstores to disk, new HFiles must be created. As the number of HFiles builds up, a compaction process merges the files into fewer, larger files.
+Q:What is role of Zookeeper in HBase?
+A:
+Q:What are different monitoring tools used to observe the performance of HBase?
+A:Ganglia and Grafana
+Q:Where do we check HBase is running in distributed mode or not?
+A:We want our HBase to run on distributed mode, so we set hbase.cluster.distributed to true in hbase-site.xml.
+Q:Where does the regionservers  configurations are stored and logfiles?
+A:$HBASE_HOME/conf/regionservers
+hadoop-env.sh/hbase-env.sh file under the conf directory of the Hadoop/ZooKeeper/HBase installation. 
+It's better to change the log directory out of the installation folder. For example, the following specifies HBase to generate its logs under the /usr/local/hbase/logs directory:
+Q:HBase tuning performance parameters?
+A:Hbase_master_heapsize
+hbase_regionserver_heapsize
+number_of_regions in each region_servers
+
+Unix shell commanfs
+Q: file with employee reocrds, print the lines matching given pattern
+A: awk '<pattern> {print}' <filename>
+e.g: awk '/manager/ {print}' employee.txt
+awk '{print $1,$4}' employee.txt
+Q:Command used to substitute a string in a file inline
+A: sed 's/unix/linux/<n>/g' sample.txt
+<n> - replace nth occurence
+g- all occurence
+Q:how to get 4th columns in csv file
+A:cut -d "<delimiter>" -f (field number) <filename>
+
+
+
+
+
